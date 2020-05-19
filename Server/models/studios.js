@@ -13,10 +13,8 @@ module.exports = (sequelize, DataTypes) => {
 
         },
     });
-    Studio associate = (models) => {
-        Studio.hasMany(models.Anime, {
-            foreignKey: 'studioId',
-        });
+    Studio.associate = models => {
+        Studio.hasMany(models.Anime)
     }
     return Studio
 }

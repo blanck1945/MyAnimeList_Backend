@@ -31,5 +31,13 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
+    Anime.associate = models => {
+        Anime.belongsTo(models.Studio, {
+            foreingKey: {
+                allowNull: false
+            }
+        })
+    }
+
     return Anime
 }

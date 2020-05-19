@@ -22,7 +22,25 @@ router.get("/:id", async (req, res) => {
     }
 })
 
+router.get("/find/:id", async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const anime = await db.Anime.findAll({
+            where: { StudioId: req.params.id },
+            include: [db.Studio]
+        })
+
+        res.send(anime)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(404).send()
+    }
+})
+
 router.post("/", async (req, res) => {
+    console.log(req.body)
     try {
         const anime = await db.Anime.create(req.body)
 
